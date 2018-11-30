@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './Person/Person';
+import classes from './App.css';
+import Person from '../components/Persons/Person/Person';
 import Radium ,{StyleRoot} from 'radium'
 class App extends Component {
   state = {
@@ -61,34 +61,8 @@ class App extends Component {
 
 
   render() {
-    var style = {
-      backgroundColor: 'green',
-      color:'white',
-      font : 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
-    var style1 = {
-      backgroundColor: 'green',
-      color:'white',
-      font : 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover':{
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
-
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons){
       persons = (
@@ -106,43 +80,29 @@ class App extends Component {
 
         
       )
-    style.backgroundColor = "red";
-    style[':hover'] = {
-      backgroundColor : 'lightred',
-      color:'black'
-    }
-    style1.backgroundColor = "red";
-    style1[':hover'] = {
-      backgroundColor : 'lightred',
-      color:'black'
-    }
+   
+    btnClass= classes.Red;
+    
     }
 
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red'); //classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('bold'); //classes = ['red', 'bold']
-    }
+    const assignedclasses = [];
+    
     return (
-      <StyleRoot>
+     
       <div className="App">
        <h1>Rahul Desai</h1>
-       <p className={classes.join(' ')}>This is really working</p>
+       <p  >This is really working</p>
        <button
-       style={style} 
+       className = {btnClass}
+      
     onClick={this.togglePersonsHandler}>Switch Button</button>
 
-  <button
-       style1={style1} 
-       onClick={this.switchNameHandler1.bind(this, 'tttttt')}>Switch Button</button>
-      
+
      {persons}
   
   
       </div>
-      </StyleRoot>
+     
 
     );
    // return React.createElement('div', {className : 'App'}, 'Hello Rahul');
